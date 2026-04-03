@@ -335,13 +335,13 @@
 <script>
     // ========== НАСТРОЙКИ ТЕКСТА (МЕНЯЙ ЗДЕСЬ) ==========
     // Текст приглашения (слева)
-    const INVITE_TEXT = "ПРИГЛАШАЮ НА МОИ";
+    const INVITE_TEXT = "Приглашаю на мои";
     
     // Дата и время мероприятия
-    const EVENT_DATE = "📅 15 августа 2026 | Суббота | 16:00";
+    const EVENT_DATE = "📅 15 августа 2026 <br> Суббота | 16:00";
     
     // Адрес мероприятия
-    const EVENT_ADDRESS = "📍 ул. Братская, 1А, Димитровград";
+    const EVENT_ADDRESS = "📍 ул. Братская, 1А, г. Димитровград <br> ресторан \"Венеция\"";
     // ===================================================
     
     const FORMSPREE_ID = "xzdkvkkw";
@@ -357,7 +357,7 @@
     
     document.getElementById('guestNameDisplay').innerHTML = `${guestName}!`;
     
-    // ИСПРАВЛЕНО: добавлена запятая после '🥴 Самогон'
+    // ТОЛЬКО ЭТО ИСПРАВЛЕНИЕ: добавлена запятая
     const drinks = ['🍷 Вино красное', '🥂 Вино белое', '🍾 Шампанское', '🥃 Коньяк', '🍸 Водка', '🥴 Самогон', '🧃 Не пью алкоголь'];
     let selectedDrinks = new Set();
     
@@ -367,8 +367,7 @@
     }
     
     const drinkContainer = document.getElementById('drinkOptions');
-    // Очищаем контейнер перед добавлением (на случай повторного вызова)
-    drinkContainer.innerHTML = '';
+    drinkContainer.innerHTML = ''; // Очищаем перед добавлением
     
     drinks.forEach(drink => {
         const btn = document.createElement('div');
