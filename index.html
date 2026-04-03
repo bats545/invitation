@@ -295,32 +295,58 @@
         }
         /* Настройки для телефонов */
         @media (max-width: 600px) {
-            .top-message {
-                margin-top: -10px;  /* На телефонах поднимаем чуть-чуть */
+            .btn { 
+                padding: 8px 16px; 
+                font-size: 12px; 
             }
     
-            .invitation-text {
-                padding-top: 15px;   /* Меньше отступ сверху на телефонах */
-                padding-bottom: 80px; /* Чуть меньше снизу, чтобы кнопки не наезжали */
+            .overlay-buttons { 
+                gap: 10px; 
+                bottom: 2%;
             }
     
-            .guest-name {
-                font-size: 22px;     /* Чуть мельче имя на телефонах */
+            .invitation-text { 
+                padding: 15px 15px 70px 15px;
             }
     
-            .invite-text {
-                font-size: 18px;     /* Мельче текст приглашения */
-                height: auto;        /* Убираем фиксированную высоту */
-                padding-left: 10px;
+            .guest-name { 
+                font-size: 22px; 
             }
     
-            .age {
-                font-size: 32px;     /* Мельче цифра 30 */
-                padding-right: 10px;
+            .invite-text { 
+                font-size: 18px; 
+                height: auto;
+                padding-left: 8px;
+            }
+    
+            .age { 
+                font-size: 28px; 
+                padding-right: 8px;
+            }
+    
+            .bottom-info .date { 
+                font-size: 11px;
+                padding: 3px 10px;
+                margin-bottom: 5px;
+            }
+    
+            .bottom-info .address { 
+               font-size: 10px;
+                padding: 3px 10px;
+            }
+    
+            /* Главное: отодвигаем дату от кнопок */
+            .bottom-info {
+                margin-bottom: 65px;
             }
     
             .bottom-row {
-                margin-top: 5px;     /* Уменьшаем отступ между строк */
+                margin-top: 5px;
+            }
+    
+            /* Поднимаем имя гостя на телефоне */
+            .top-message {
+                margin-top: -10px;
             }
         }
     </style>
