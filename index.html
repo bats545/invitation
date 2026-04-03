@@ -66,6 +66,7 @@
             color: #d4af37;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             text-align: center;
+            height: 10px;
             width: 100%;
         }
 
@@ -334,19 +335,13 @@
 
 <script>
     // ========== НАСТРОЙКИ ТЕКСТА (МЕНЯЙ ЗДЕСЬ) ==========
-    // Текст приглашения (слева)
     const INVITE_TEXT = "Приглашаю на мои";
-    
-    // Дата и время мероприятия
     const EVENT_DATE = "📅 15 августа 2026 <br> Суббота | 16:00";
-    
-    // Адрес мероприятия
     const EVENT_ADDRESS = "📍 ул. Братская, 1А, г. Димитровград <br> ресторан \"Венеция\"";
     // ===================================================
     
     const FORMSPREE_ID = "xzdkvkkw";
     
-    // Применяем настройки текста
     document.getElementById('inviteText').innerHTML = INVITE_TEXT;
     document.getElementById('eventDate').innerHTML = EVENT_DATE;
     document.getElementById('eventAddress').innerHTML = EVENT_ADDRESS;
@@ -354,47 +349,74 @@
     const urlParams = new URLSearchParams(window.location.search);
     let guestName = urlParams.get('guest');
     if (!guestName) guestName = 'Гость';
-    
     document.getElementById('guestNameDisplay').innerHTML = `${guestName}!`;
     
-    // ТОЛЬКО ЭТО ИСПРАВЛЕНИЕ: добавлена запятая
-    const drinks = ['🍷 Вино красное', '🥂 Вино белое', '🍾 Шампанское', '🥃 Коньяк', '🍸 Водка', '🥴 Самогон', '🧃 Не пью алкоголь'];
+    // Список напитков (с эмодзи)
+    const drinks = [
+        '🍷 Вино красное',
+        '🥂 Вино белое', 
+        '🍾 Шампанское',
+        '🥃 Коньяк',
+        '🍸 Водка',
+        '🥴 Самогон',
+        '🧃 Не пью алкоголь'
+    ];
+    
+    // Храним выбранные напитки (включая эмодзи для отображения)
     let selectedDrinks = new Set();
     
     function updateSelectedDisplay() {
         const span = document.querySelector('#selectedList span');
-        span.textContent = selectedDrinks.size === 0 ? 'пока ничего' : Array.from(selectedDrinks).join(', ');
+        if (selectedDrinks.size === 0) {
+            span.textContent = 'пока ничего';
+        } else {
+            // Показываем с эмодзи
+            span.textContent = Array.from(selectedDrinks).join(', ');
+        }
     }
     
     const drinkContainer = document.getElementById('drinkOptions');
-    drinkContainer.innerHTML = ''; // Очищаем перед добавлением
+    drinkContainer.innerHTML = '';
     
     drinks.forEach(drink => {
         const btn = document.createElement('div');
         btn.className = 'option';
         btn.textContent = drink;
-        const drinkName = drink.replace(/^[🍷🥂🍾🥃🍸🍺🍹🧃🥴]\s*/, '');
         
         btn.onclick = () => {
-            if (selectedDrinks.has(drinkName)) {
-                selectedDrinks.delete(drinkName);
-                btn.classList.remove('selected');
-            } else {
-                if (drinkName === 'Не пью алкоголь') {
+            const isNoAlcohol = drink === '🧃 Не пью алкоголь';
+            
+            if (isNoAlcohol) {
+                // Если выбрали "Не пью алкоголь"
+                if (selectedDrinks.has(drink)) {
+                    // Уже выбрано — снимаем
                     selectedDrinks.clear();
-                    selectedDrinks.add('Не пью алкоголь');
+                    document.querySelectorAll('#drinkOptions .option').forEach(b => b.classList.remove('selected'));
+                } else {
+                    // Выбираем "Не пью" и очищаем всё
+                    selectedDrinks.clear();
+                    selectedDrinks.add(drink);
                     document.querySelectorAll('#drinkOptions .option').forEach(b => b.classList.remove('selected'));
                     btn.classList.add('selected');
+                }
+            } else {
+                // Выбрали алкоголь
+                if (selectedDrinks.has(drink)) {
+                    // Убираем этот напиток
+                    selectedDrinks.delete(drink);
+                    btn.classList.remove('selected');
                 } else {
-                    if (selectedDrinks.has('Не пью алкоголь')) {
-                        selectedDrinks.delete('Не пью алкоголь');
+                    // Добавляем напиток
+                    // Если был выбран "Не пью алкоголь" — убираем его
+                    if (selectedDrinks.has('🧃 Не пью алкоголь')) {
+                        selectedDrinks.delete('🧃 Не пью алкоголь');
                         document.querySelectorAll('#drinkOptions .option').forEach(b => {
-                            if (b.textContent.replace(/^[🍷🥂🍾🥃🍸🍺🍹🧃🥴]\s*/, '') === 'Не пью алкоголь') {
+                            if (b.textContent === '🧃 Не пью алкоголь') {
                                 b.classList.remove('selected');
                             }
                         });
                     }
-                    selectedDrinks.add(drinkName);
+                    selectedDrinks.add(drink);
                     btn.classList.add('selected');
                 }
             }
@@ -403,9 +425,19 @@
         drinkContainer.appendChild(btn);
     });
     
+    // Обработка своего варианта напитка
     document.getElementById('otherDrink').addEventListener('change', function() {
         const val = this.value.trim();
         if (val) {
+            // Если был выбран "Не пью алкоголь" — убираем его
+            if (selectedDrinks.has('🧃 Не пью алкоголь')) {
+                selectedDrinks.delete('🧃 Не пью алкоголь');
+                document.querySelectorAll('#drinkOptions .option').forEach(b => {
+                    if (b.textContent === '🧃 Не пью алкоголь') {
+                        b.classList.remove('selected');
+                    }
+                });
+            }
             selectedDrinks.add(val);
             updateSelectedDisplay();
             this.value = '';
