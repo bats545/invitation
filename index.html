@@ -357,7 +357,8 @@
     
     document.getElementById('guestNameDisplay').innerHTML = `${guestName}!`;
     
-    const drinks = ['🍷 Вино красное', '🥂 Вино белое', '🍾 Шампанское', '🥃 Коньяк', '🍸 Водка', '🥴 Самогон' '🧃 Не пью алкоголь'];
+    // ИСПРАВЛЕНО: добавлена запятая после '🥴 Самогон'
+    const drinks = ['🍷 Вино красное', '🥂 Вино белое', '🍾 Шампанское', '🥃 Коньяк', '🍸 Водка', '🥴 Самогон', '🧃 Не пью алкоголь'];
     let selectedDrinks = new Set();
     
     function updateSelectedDisplay() {
@@ -366,11 +367,14 @@
     }
     
     const drinkContainer = document.getElementById('drinkOptions');
+    // Очищаем контейнер перед добавлением (на случай повторного вызова)
+    drinkContainer.innerHTML = '';
+    
     drinks.forEach(drink => {
         const btn = document.createElement('div');
         btn.className = 'option';
         btn.textContent = drink;
-        const drinkName = drink.replace(/^[🍷🥂🍾🥃🍸🍺🍹🧃]\s*/, '');
+        const drinkName = drink.replace(/^[🍷🥂🍾🥃🍸🍺🍹🧃🥴]\s*/, '');
         
         btn.onclick = () => {
             if (selectedDrinks.has(drinkName)) {
@@ -386,7 +390,7 @@
                     if (selectedDrinks.has('Не пью алкоголь')) {
                         selectedDrinks.delete('Не пью алкоголь');
                         document.querySelectorAll('#drinkOptions .option').forEach(b => {
-                            if (b.textContent.replace(/^[🍷🥂🍾🥃🍸🍺🍹🧃]\s*/, '') === 'Не пью алкоголь') {
+                            if (b.textContent.replace(/^[🍷🥂🍾🥃🍸🍺🍹🧃🥴]\s*/, '') === 'Не пью алкоголь') {
                                 b.classList.remove('selected');
                             }
                         });
