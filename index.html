@@ -57,14 +57,14 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-top: -40px;  /* Поднимаем имя гостя выше */
+            margin-top: -10px;  /* Поднимаем имя гостя выше */
         }
 
         .guest-name {
             font-size: 36px;
             font-weight: 700;
             margin: 10px 0;
-            color: #d4af37;
+            color: #523117;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             text-align: center;
             width: 100%;
@@ -292,6 +292,36 @@
             .age { font-size: 36px; }
             .bottom-info .date { font-size: 14px; }
             .bottom-info .address { font-size: 12px; }
+        }
+        /* Настройки для телефонов */
+        @media (max-width: 600px) {
+            .top-message {
+                margin-top: -10px;  /* На телефонах поднимаем чуть-чуть */
+            }
+    
+            .invitation-text {
+                padding-top: 15px;   /* Меньше отступ сверху на телефонах */
+                padding-bottom: 80px; /* Чуть меньше снизу, чтобы кнопки не наезжали */
+            }
+    
+            .guest-name {
+                font-size: 22px;     /* Чуть мельче имя на телефонах */
+            }
+    
+            .invite-text {
+                font-size: 18px;     /* Мельче текст приглашения */
+                height: auto;        /* Убираем фиксированную высоту */
+                padding-left: 10px;
+            }
+    
+            .age {
+                font-size: 32px;     /* Мельче цифра 30 */
+                padding-right: 10px;
+            }
+    
+            .bottom-row {
+                margin-top: 5px;     /* Уменьшаем отступ между строк */
+            }
         }
     </style>
 </head>
