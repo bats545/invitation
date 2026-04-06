@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Приглашение на 30-летие</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -17,25 +17,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 16px;
             background: #0a0a1a;
         }
 
         .invitation-card {
-            max-width: 800px;
+            max-width: 700px;
             width: 100%;
             position: relative;
-            border-radius: 30px;
+            border-radius: 32px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .invitation-card:hover {
+            transform: translateY(-5px);
         }
 
         .invitation-image {
             width: 100%;
             height: auto;
             display: block;
+            object-fit: cover;
         }
 
+        /* Текст поверх картинки */
         .invitation-text {
             position: absolute;
             top: 0;
@@ -47,8 +54,8 @@
             justify-content: space-between;
             align-items: center;
             text-align: center;
-            color: rgb(0, 0, 0);
-            padding: 40px 20px 100px 20px;
+            padding: 40px 24px 120px 24px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
         }
 
         .top-message {
@@ -57,100 +64,104 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-top: -10px;  /* Поднимаем имя гостя выше */
         }
 
         .guest-name {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 700;
-            margin: 10px 0;
-            color: #523117;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin: 15px 0;
+            color: #f5e7a3;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
             text-align: center;
             width: 100%;
+            letter-spacing: 1px;
         }
 
         .bottom-row {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
+            align-items: flex-end;
+            margin-top: 20px;
         }
 
         .invite-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 40px;
-            font-weight: 900;
+            font-size: 32px;
+            font-weight: 600;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             text-align: left;
             flex: 1;
-            height: 100px;
-            padding-left: 5px;
+            padding-left: 8px;
+            color: white;
+            line-height: 1.2;
         }
 
         .age {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 68px;
+            font-size: 64px;
             font-weight: 900;
-            color: #000000;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #f5e7a3;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
             text-align: right;
             flex: 1;
-            height: 10px;
-            padding-right: 20px;
+            padding-right: 8px;
+            line-height: 1;
         }
 
         .bottom-info {
             width: 100%;
+            text-align: center;
         }
 
         .bottom-info .date {
             font-size: 18px;
-            font-weight: 400;
-            margin-bottom: 8px;
+            font-weight: 500;
+            margin-bottom: 10px;
             color: #ffffff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            background: rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.55);
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            letter-spacing: 0.5px;
         }
 
         .bottom-info .address {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 400;
-            opacity: 0.95;
             color: #ffffff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            background: rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.55);
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            line-height: 1.4;
         }
 
+        /* Кнопки */
         .overlay-buttons {
             position: absolute;
-            bottom: 8%;
+            bottom: 25px;
             left: 0;
             right: 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
             padding: 0 20px;
         }
 
         .btn {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            padding: 14px 32px;
-            border-radius: 50px;
-            color: #f8d04e;
-            font-family: 'Raleway', sans-serif;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(245, 231, 163, 0.6);
+            padding: 12px 28px;
+            border-radius: 60px;
+            color: #f5e7a3;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
@@ -161,12 +172,13 @@
         }
 
         .btn:hover {
-            background: #d4af37;
+            background: #f5e7a3;
             color: #1a1a1a;
-            border-color: #d4af37;
+            border-color: #f5e7a3;
             transform: translateY(-3px);
         }
 
+        /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -174,44 +186,49 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            max-width: 600px;
+            max-width: 550px;
             width: 90%;
-            background: white;
-            border-radius: 30px;
-            padding: 30px;
+            background: linear-gradient(135deg, #fff 0%, #fef9f0 100%);
+            border-radius: 40px;
+            padding: 30px 25px;
             position: relative;
             max-height: 85vh;
             overflow-y: auto;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+            border: 1px solid rgba(245,231,163,0.5);
         }
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
+            top: 18px;
+            right: 22px;
+            font-size: 32px;
             cursor: pointer;
             color: #999;
             transition: all 0.3s;
+            line-height: 1;
         }
 
         .close-btn:hover {
             color: #d4af37;
+            transform: scale(1.1);
         }
 
         .question {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 700;
             text-align: center;
             margin-bottom: 20px;
-            color: #1a1a1a;
+            color: #2c2c2c;
         }
 
         .options {
@@ -225,128 +242,163 @@
         .option {
             background: #f5f3f0;
             padding: 10px 22px;
-            border-radius: 50px;
+            border-radius: 60px;
             cursor: pointer;
             border: 1px solid #e0d8cc;
             transition: all 0.3s ease;
-            font-size: 14px;
+            font-size: 15px;
             font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
         }
 
         .option.selected {
             background: #d4af37;
             color: white;
             border-color: #d4af37;
+            box-shadow: 0 4px 12px rgba(212,175,55,0.3);
         }
 
         input {
             width: 100%;
-            padding: 12px;
+            padding: 14px 18px;
             border: 1px solid #e0d8cc;
-            border-radius: 50px;
-            margin-bottom: 15px;
+            border-radius: 60px;
+            margin-bottom: 20px;
             font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.2);
         }
 
         .selected-list {
-            background: #f9f5f0;
-            padding: 12px;
-            border-radius: 50px;
+            background: linear-gradient(135deg, #f9f5f0, #f5f0e8);
+            padding: 14px;
+            border-radius: 60px;
             text-align: center;
-            margin-bottom: 15px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            font-size: 15px;
             font-family: 'Cormorant Garamond', serif;
+            border: 1px solid #e8dfd0;
+            color: #333;
+        }
+
+        .selected-list span {
+            font-weight: bold;
+            color: #d4af37;
         }
 
         .submit-btn {
             background: linear-gradient(135deg, #d4af37 0%, #c5a128 100%);
             color: #1a1a1a;
             border: none;
-            padding: 14px;
-            border-radius: 50px;
-            font-size: 16px;
+            padding: 16px;
+            border-radius: 60px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
             font-family: 'Cormorant Garamond', serif;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.4);
         }
 
         .message {
-            margin-top: 15px;
+            margin-top: 18px;
             padding: 12px;
-            border-radius: 50px;
+            border-radius: 60px;
             text-align: center;
             font-size: 14px;
         }
 
-        .success { background: #d4edda; color: #155724; }
-        .error { background: #f8d7da; color: #721c24; }
-        .loading { background: #fff3cd; color: #856404; }
+        .success { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+        .error { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+        .loading { background: #fff3cd; color: #856404; border-left: 4px solid #ffc107; }
 
+        /* ========== АДАПТИВ ДЛЯ ТЕЛЕФОНОВ ========== */
         @media (max-width: 600px) {
-            .btn { padding: 10px 18px; font-size: 12px; }
-            .overlay-buttons { gap: 12px; bottom: 5%; }
-            .invitation-text { padding: 20px 15px 90px 15px; }
-            .guest-name { font-size: 24px; }
-            .invite-text { font-size: 20px; }
-            .age { font-size: 36px; }
-            .bottom-info .date { font-size: 14px; }
-            .bottom-info .address { font-size: 12px; }
-        }
-        /* Настройки для телефонов */
-        @media (max-width: 600px) {
-            .btn { 
-                padding: 8px 16px; 
-                font-size: 12px; 
+            body {
+                padding: 12px;
             }
-    
-            .overlay-buttons { 
-                gap: 10px; 
-                bottom: 2%;
+            
+            .invitation-card {
+                border-radius: 24px;
             }
-    
-            .invitation-text { 
-                padding: 15px 15px 70px 15px;
+            
+            .invitation-text {
+                padding: 20px 16px 90px 16px;
             }
-    
-            .guest-name { 
-                font-size: 22px; 
+            
+            .guest-name {
+                font-size: 26px;
+                margin: 8px 0;
             }
-    
-            .invite-text { 
-                font-size: 18px; 
-                height: auto;
-                padding-left: 8px;
+            
+            .invite-text {
+                font-size: 20px;
+                padding-left: 4px;
             }
-    
-            .age { 
-                font-size: 28px; 
-                padding-right: 8px;
+            
+            .age {
+                font-size: 40px;
+                padding-right: 4px;
             }
-    
-            .bottom-info .date { 
-                font-size: 11px;
-                padding: 3px 10px;
-                margin-bottom: 5px;
-            }
-    
-            .bottom-info .address { 
-               font-size: 10px;
-                padding: 3px 10px;
-            }
-    
-            /* Главное: отодвигаем дату от кнопок */
-            .bottom-info {
-                margin-bottom: 65px;
-            }
-    
+            
             .bottom-row {
-                margin-top: 5px;
+                margin-top: 10px;
             }
-    
-            /* Поднимаем имя гостя на телефоне */
-            .top-message {
-                margin-top: -10px;
+            
+            .bottom-info {
+                margin-bottom: 10px;
+            }
+            
+            .bottom-info .date {
+                font-size: 12px;
+                padding: 5px 14px;
+                margin-bottom: 6px;
+            }
+            
+            .bottom-info .address {
+                font-size: 11px;
+                padding: 5px 14px;
+            }
+            
+            .overlay-buttons {
+                bottom: 15px;
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 8px 18px;
+                font-size: 14px;
+            }
+            
+            .modal-content {
+                padding: 25px 18px;
+                width: 92%;
+            }
+            
+            .question {
+                font-size: 22px;
+            }
+            
+            .option {
+                padding: 7px 16px;
+                font-size: 13px;
+            }
+            
+            .submit-btn {
+                padding: 14px;
+                font-size: 16px;
             }
         }
     </style>
@@ -354,7 +406,7 @@
 <body>
 
 <div class="invitation-card">
-    <img class="invitation-image" src="https://i.postimg.cc/m21F9dtD/DSC08327.jpg" alt="Приглашение">
+    <img class="invitation-image" src="https://i.postimg.cc/prxZtCb9/DSC08327.jpg" alt="Приглашение">
     
     <div class="invitation-text">
         <div class="top-message">
@@ -394,9 +446,8 @@
     const INVITE_TEXT = "Приглашаю на мои";
     const EVENT_DATE = "📅 15 августа 2026 <br> Суббота | 16:00";
     const EVENT_ADDRESS = "📍 ул. Братская, 1А, г. Димитровград <br> ресторан \"Венеция\"";
-    // ===================================================
-    
     const FORMSPREE_ID = "xzdkvkkw";
+    // ===================================================
     
     document.getElementById('inviteText').innerHTML = INVITE_TEXT;
     document.getElementById('eventDate').innerHTML = EVENT_DATE;
@@ -407,7 +458,6 @@
     if (!guestName) guestName = 'Гость';
     document.getElementById('guestNameDisplay').innerHTML = `${guestName}!`;
     
-    // Список напитков (с эмодзи)
     const drinks = [
         '🍷 Вино красное',
         '🥂 Вино белое', 
@@ -418,7 +468,6 @@
         '🧃 Не пью алкоголь'
     ];
     
-    // Храним выбранные напитки (включая эмодзи для отображения)
     let selectedDrinks = new Set();
     
     function updateSelectedDisplay() {
@@ -426,7 +475,6 @@
         if (selectedDrinks.size === 0) {
             span.textContent = 'пока ничего';
         } else {
-            // Показываем с эмодзи
             span.textContent = Array.from(selectedDrinks).join(', ');
         }
     }
@@ -443,33 +491,24 @@
             const isNoAlcohol = drink === '🧃 Не пью алкоголь';
             
             if (isNoAlcohol) {
-                // Если выбрали "Не пью алкоголь"
                 if (selectedDrinks.has(drink)) {
-                    // Уже выбрано — снимаем
                     selectedDrinks.clear();
                     document.querySelectorAll('#drinkOptions .option').forEach(b => b.classList.remove('selected'));
                 } else {
-                    // Выбираем "Не пью" и очищаем всё
                     selectedDrinks.clear();
                     selectedDrinks.add(drink);
                     document.querySelectorAll('#drinkOptions .option').forEach(b => b.classList.remove('selected'));
                     btn.classList.add('selected');
                 }
             } else {
-                // Выбрали алкоголь
                 if (selectedDrinks.has(drink)) {
-                    // Убираем этот напиток
                     selectedDrinks.delete(drink);
                     btn.classList.remove('selected');
                 } else {
-                    // Добавляем напиток
-                    // Если был выбран "Не пью алкоголь" — убираем его
                     if (selectedDrinks.has('🧃 Не пью алкоголь')) {
                         selectedDrinks.delete('🧃 Не пью алкоголь');
                         document.querySelectorAll('#drinkOptions .option').forEach(b => {
-                            if (b.textContent === '🧃 Не пью алкоголь') {
-                                b.classList.remove('selected');
-                            }
+                            if (b.textContent === '🧃 Не пью алкоголь') b.classList.remove('selected');
                         });
                     }
                     selectedDrinks.add(drink);
@@ -481,17 +520,13 @@
         drinkContainer.appendChild(btn);
     });
     
-    // Обработка своего варианта напитка
     document.getElementById('otherDrink').addEventListener('change', function() {
         const val = this.value.trim();
         if (val) {
-            // Если был выбран "Не пью алкоголь" — убираем его
             if (selectedDrinks.has('🧃 Не пью алкоголь')) {
                 selectedDrinks.delete('🧃 Не пью алкоголь');
                 document.querySelectorAll('#drinkOptions .option').forEach(b => {
-                    if (b.textContent === '🧃 Не пью алкоголь') {
-                        b.classList.remove('selected');
-                    }
+                    if (b.textContent === '🧃 Не пью алкоголь') b.classList.remove('selected');
                 });
             }
             selectedDrinks.add(val);
@@ -502,10 +537,12 @@
     
     function openPoll() {
         document.getElementById('pollModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
     
     function closePoll() {
         document.getElementById('pollModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
     
     const submitBtn = document.getElementById('submitBtn');
